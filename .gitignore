@@ -1,2 +1,4 @@
 
 *.vsidx
+/assignment 2/obj/**
+/assignment 2/bin/**
