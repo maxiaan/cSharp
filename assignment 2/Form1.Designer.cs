@@ -46,7 +46,6 @@ namespace assignment_2
             this.rbCustom = new System.Windows.Forms.RadioButton();
             this.rbPearl = new System.Windows.Forms.RadioButton();
             this.rbStandard = new System.Windows.Forms.RadioButton();
-            this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtFinish = new System.Windows.Forms.TextBox();
             this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.txtTax = new System.Windows.Forms.TextBox();
@@ -57,6 +56,8 @@ namespace assignment_2
             this.btnReset = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblTodaysDate = new System.Windows.Forms.Label();
+            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.grpAccessories.SuspendLayout();
             this.grpExterior.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +89,6 @@ namespace assignment_2
             this.lblFinish.Size = new System.Drawing.Size(100, 13);
             this.lblFinish.TabIndex = 2;
             this.lblFinish.Text = "Accessories & Finish:";
-            this.lblFinish.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblSubtotal
             // 
@@ -154,6 +154,7 @@ namespace assignment_2
             this.chkGps.Name = "chkGps";
             this.chkGps.Size = new System.Drawing.Size(102, 17);
             this.chkGps.TabIndex = 2;
+            this.chkGps.Tag = "1,741.23";
             this.chkGps.Text = "GPS Navigation";
             this.chkGps.UseVisualStyleBackColor = true;
             // 
@@ -164,6 +165,7 @@ namespace assignment_2
             this.chkLeather.Name = "chkLeather";
             this.chkLeather.Size = new System.Drawing.Size(97, 17);
             this.chkLeather.TabIndex = 1;
+            this.chkLeather.Tag = "987.41";
             this.chkLeather.Text = "Leather Interior";
             this.chkLeather.UseVisualStyleBackColor = true;
             // 
@@ -174,6 +176,7 @@ namespace assignment_2
             this.chkStereo.Name = "chkStereo";
             this.chkStereo.Size = new System.Drawing.Size(94, 17);
             this.chkStereo.TabIndex = 0;
+            this.chkStereo.Tag = "425.76";
             this.chkStereo.Text = "Stereo System";
             this.chkStereo.UseVisualStyleBackColor = true;
             // 
@@ -197,6 +200,7 @@ namespace assignment_2
             this.rbCustom.Size = new System.Drawing.Size(123, 17);
             this.rbCustom.TabIndex = 2;
             this.rbCustom.TabStop = true;
+            this.rbCustom.Tag = "599.99";
             this.rbCustom.Text = "Customized Detailing";
             this.rbCustom.UseVisualStyleBackColor = true;
             // 
@@ -208,6 +212,7 @@ namespace assignment_2
             this.rbPearl.Size = new System.Drawing.Size(49, 17);
             this.rbPearl.TabIndex = 1;
             this.rbPearl.TabStop = true;
+            this.rbPearl.Tag = "345.72";
             this.rbPearl.Text = "Pearl";
             this.rbPearl.UseVisualStyleBackColor = true;
             // 
@@ -219,20 +224,15 @@ namespace assignment_2
             this.rbStandard.Size = new System.Drawing.Size(68, 17);
             this.rbStandard.TabIndex = 0;
             this.rbStandard.TabStop = true;
+            this.rbStandard.Tag = "0";
             this.rbStandard.Text = "Standard";
             this.rbStandard.UseVisualStyleBackColor = true;
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.Location = new System.Drawing.Point(579, 81);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(100, 20);
-            this.txtPrice.TabIndex = 10;
             // 
             // txtFinish
             // 
             this.txtFinish.Location = new System.Drawing.Point(579, 108);
             this.txtFinish.Name = "txtFinish";
+            this.txtFinish.ReadOnly = true;
             this.txtFinish.Size = new System.Drawing.Size(100, 20);
             this.txtFinish.TabIndex = 11;
             // 
@@ -240,6 +240,7 @@ namespace assignment_2
             // 
             this.txtSubtotal.Location = new System.Drawing.Point(579, 158);
             this.txtSubtotal.Name = "txtSubtotal";
+            this.txtSubtotal.ReadOnly = true;
             this.txtSubtotal.Size = new System.Drawing.Size(100, 20);
             this.txtSubtotal.TabIndex = 12;
             // 
@@ -247,6 +248,7 @@ namespace assignment_2
             // 
             this.txtTax.Location = new System.Drawing.Point(578, 186);
             this.txtTax.Name = "txtTax";
+            this.txtTax.ReadOnly = true;
             this.txtTax.Size = new System.Drawing.Size(100, 20);
             this.txtTax.TabIndex = 13;
             // 
@@ -254,6 +256,7 @@ namespace assignment_2
             // 
             this.txtTotal.Location = new System.Drawing.Point(579, 251);
             this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(100, 20);
             this.txtTotal.TabIndex = 14;
             // 
@@ -263,11 +266,13 @@ namespace assignment_2
             this.txtTrade.Name = "txtTrade";
             this.txtTrade.Size = new System.Drawing.Size(100, 20);
             this.txtTrade.TabIndex = 15;
+            this.txtTrade.TextChanged += new System.EventHandler(this.txtTrade_TextChanged);
             // 
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(578, 351);
             this.txtAmount.Name = "txtAmount";
+            this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(100, 20);
             this.txtAmount.TabIndex = 16;
             // 
@@ -289,6 +294,7 @@ namespace assignment_2
             this.btnReset.TabIndex = 18;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnExit
             // 
@@ -298,21 +304,40 @@ namespace assignment_2
             this.btnExit.TabIndex = 19;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblTodaysDate
             // 
             this.lblTodaysDate.AutoSize = true;
-            this.lblTodaysDate.Location = new System.Drawing.Point(34, 394);
+            this.lblTodaysDate.Location = new System.Drawing.Point(34, 425);
             this.lblTodaysDate.Name = "lblTodaysDate";
-            this.lblTodaysDate.Size = new System.Drawing.Size(35, 13);
+            this.lblTodaysDate.Size = new System.Drawing.Size(89, 13);
             this.lblTodaysDate.TabIndex = 20;
-            this.lblTodaysDate.Text = "label2";
+            this.lblTodaysDate.Text = "[Calculated Date]";
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Location = new System.Drawing.Point(34, 404);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(126, 13);
+            this.lblCompanyName.TabIndex = 21;
+            this.lblCompanyName.Text = "Shale\'s Super Auto Sales";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(579, 81);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtPrice.TabIndex = 10;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.lblTodaysDate);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnReset);
@@ -335,7 +360,8 @@ namespace assignment_2
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Shale\'s Super Auto Sales";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.grpAccessories.ResumeLayout(false);
             this.grpAccessories.PerformLayout();
             this.grpExterior.ResumeLayout(false);
@@ -344,16 +370,6 @@ namespace assignment_2
             this.PerformLayout();
 
         }
-
-        private void btnTotal_Click(object sender, EventArgs e) {
-        
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         private System.Windows.Forms.Label label1;
@@ -372,7 +388,6 @@ namespace assignment_2
         private System.Windows.Forms.RadioButton rbCustom;
         private System.Windows.Forms.RadioButton rbPearl;
         private System.Windows.Forms.RadioButton rbStandard;
-        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtFinish;
         private System.Windows.Forms.TextBox txtSubtotal;
         private System.Windows.Forms.TextBox txtTax;
@@ -383,6 +398,8 @@ namespace assignment_2
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblTodaysDate;
+        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }
 
