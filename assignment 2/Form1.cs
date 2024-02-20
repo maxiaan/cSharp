@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace assignment_2
 {
+    /// <summary>
+    /// Shale Harrison
+    /// Assignment 2
+    /// 2/19/2024
+    /// This application will determine the Amount Due for a vehicle.
+    /// </summary>
     public partial class Form1 : Form
     {
         int totalTransactions = 0;
@@ -17,6 +23,11 @@ namespace assignment_2
 
         public Form1() => InitializeComponent();
 
+        /// <summary>
+        /// validate input text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtPrice.Text) && txtPrice.Text.Any(c => !char.IsDigit(c)))
@@ -28,6 +39,11 @@ namespace assignment_2
             }
         }
 
+        /// <summary>
+        /// validate input text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTrade_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtTrade.Text) && txtTrade.Text.Any(c => !char.IsDigit(c)))
@@ -38,20 +54,32 @@ namespace assignment_2
                 txtTrade.Focus();
             }
         }
-
+        /// <summary>
+        /// form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
             string formattedDate = DateTime.Now.ToString("dddd, MMMM dd");
             lblTodaysDate.Text = formattedDate;
             reset();
         }
-
+        /// <summary>
+        /// close
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
             MessageBox.Show($"Total Transactions = { totalTransactions }\n Total Sales Amount = {totalAmount}");
             Close();
         }
-
+        /// <summary>
+        /// total
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTotal_Click(object sender, EventArgs e)
         {
             decimal salesPrice;
@@ -132,6 +160,11 @@ namespace assignment_2
                 }
             }
         }
+        /// <summary>
+        /// reset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReset_Click(object sender, EventArgs e)
         {
             reset();
